@@ -3,18 +3,18 @@
 %   date    = 4/19/2018
 %
 
-% Entrada sencilla para el predicado Hanoi.
-% En M se escribira cada paso (o cambio de posicion de discos)
-% Se le llama con el reverso de la lista original debido a la recursividad, en profundidad se obtienen los mensajes en modo contrario.
+% Simple entry.
+% M is basically a list of logs
+% Due to recursivity the reverse is needed
 hanoi(D, M):-
     reverse(D, B),
     phrase( hanoi(B, [origen, destino, otro]), M).
 
-% La gramatica se utiliza para construir la informacion de cada paso.
+% Use of grammar for building the logs
 % H -> HmH | (Eps).
-% Donde m es el terminal q indica lo realizado en su paso.
-% El no-terminal H se llama actualizando ordenes de origen, destino y otro segun el caso requiera.
-% Una vez terminado de colocar todas los discos la gramatica culmina y por ende el programa.
+% Where m is a terminal symbol that indicates the performed operation.
+% The non-terminal H is used relocating origin, destination and other according to case.
+% Once all disks are relocated predicate will finish.
 hanoi([A|D], [S,T,R]) -->
     hanoi(D, [S,R,T]),
     [mueve(A,S-->T)], 
