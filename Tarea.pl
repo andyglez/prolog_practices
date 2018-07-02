@@ -4,17 +4,17 @@
 %
 
 
-% Implementacion de functor utilizando =..
-% Triunfa si:
-%   T es el nombre de la funcion F y 
-%   A es su cantidad de argumentos.
+% functor implementation using =..
+% True if:
+%   T is the function name for F AND 
+%   A is its number of args.
 my_functor(T, F, A):-
     F =.. [T|Y],
     length(Y, A).
 
-% Implementacion de arg utilizando =.. y predicado de apoyo
-% Triunfa si:
-%   El n-esimo argumento de T unifica con V.
+% arg implementation using =.. and support predicate
+% True if:
+%   N-th arg of T unifies with V.
 my_arg(N, T, V):-
     T =.. [_|X],
     find(N, X, V).
